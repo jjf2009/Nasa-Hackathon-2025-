@@ -42,9 +42,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e35lh"]
-size = Vector2(136, 279)
+size = Vector2(136, 187)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+motion_mode = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bpcsf")
@@ -52,7 +53,7 @@ autoplay = "default"
 frame_progress = 0.8955717
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, 50.5)
+position = Vector2(3, 4.5)
 shape = SubResource("RectangleShape2D_e35lh")
 
 [node name="Camera2D" type="Camera2D" parent="."]

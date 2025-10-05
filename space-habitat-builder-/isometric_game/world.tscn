@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bavfemsl67l8y"]
+[gd_scene load_steps=28 format=3 uid="uid://bavfemsl67l8y"]
 
 [ext_resource type="Texture2D" uid="uid://cwb2vnnl6etpd" path="res://space-kit-1.0/Isometric/frameLowTile_NE.png" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://qanege3fbo5r" path="res://scripts/game_scene.gd" id="2_2u3nc"]
@@ -6,9 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://cd5eg8vc4xrmb" path="res://space-kit-1.0/Isometric/groundTileRough_NE.png" id="3_dwbse"]
 [ext_resource type="Texture2D" uid="uid://dyv10x8sg5tgl" path="res://space-kit-1.0/Isometric/groundTileRough_SE.png" id="4_pkg7o"]
 [ext_resource type="Texture2D" uid="uid://6ky1wjpe0jr1" path="res://space-kit-1.0/Isometric/groundTileRough_NW.png" id="5_gbfbk"]
+[ext_resource type="Texture2D" uid="uid://b8syeddeimbs1" path="res://space-kit-1.0/Isometric/metalTileConnectCenter_NW.png" id="5_udxuc"]
 [ext_resource type="Texture2D" uid="uid://dlhkddr8hfqfr" path="res://space-kit-1.0/Isometric/groundTile_NW.png" id="6_ioo17"]
-[ext_resource type="Texture2D" uid="uid://nbuo5gvyc6qy" path="res://space-kit-1.0/Topdown/barrelLarge.png" id="7_hiqwa"]
 [ext_resource type="Texture2D" uid="uid://csidfg4xak462" path="res://space-kit-1.0/Isometric/astronaut_N.png" id="8_2u3nc"]
+[ext_resource type="Texture2D" uid="uid://v5cgtndyc68d" path="res://space-kit-1.0/Isometric/metalStructureCross_SE.png" id="8_udxuc"]
 [ext_resource type="Texture2D" uid="uid://dsr52r78lgxhc" path="res://space-kit-1.0/Isometric/astronaut_NE.png" id="9_udxuc"]
 [ext_resource type="Texture2D" uid="uid://bvdwm55rrqkdp" path="res://space-kit-1.0/Isometric/astronaut_E.png" id="10_ikiii"]
 [ext_resource type="Texture2D" uid="uid://c4wo7mimyquic" path="res://space-kit-1.0/Isometric/astronaut_SE.png" id="11_cbp6q"]
@@ -28,6 +29,12 @@ texture = ExtResource("3_dwbse")
 texture_region_size = Vector2i(138, 95)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cbp6q"]
+texture = ExtResource("5_udxuc")
+texture_region_size = Vector2i(138, 95)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -47.5, -69, 0, 0, 47.5, 16.059603, 36.444477, 69, 0)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ic0uy"]
 texture = ExtResource("4_pkg7o")
 texture_region_size = Vector2i(138, 95)
@@ -43,10 +50,11 @@ texture = ExtResource("6_ioo17")
 texture_region_size = Vector2i(138, 95)
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wjb0r"]
-texture = ExtResource("7_hiqwa")
-margins = Vector2i(2, 0)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ikiii"]
+texture = ExtResource("8_udxuc")
 texture_region_size = Vector2i(138, 95)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -47.5, -69, 0, 0, 47.5, 16.059603, 36.444477, 69, 0)
 
 [sub_resource type="TileSet" id="TileSet_tlwt5"]
 tile_shape = 1
@@ -57,7 +65,8 @@ sources/1 = SubResource("TileSetAtlasSource_wse8f")
 sources/2 = SubResource("TileSetAtlasSource_ic0uy")
 sources/3 = SubResource("TileSetAtlasSource_k3n1d")
 sources/4 = SubResource("TileSetAtlasSource_2o6r5")
-sources/5 = SubResource("TileSetAtlasSource_wjb0r")
+sources/9 = SubResource("TileSetAtlasSource_ikiii")
+sources/10 = SubResource("TileSetAtlasSource_cbp6q")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mc2jv"]
 animations = [{
@@ -91,25 +100,31 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_udxuc"]
+radius = 29.0
+height = 58.0
+
 [node name="World" type="Node2D"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_fj7yv")]
 position = Vector2(-24, -233)
 script = ExtResource("2_2u3nc")
 
-[node name="Camera2D2" type="Camera2D" parent="CharacterBody2D"]
-position_smoothing_enabled = true
-
 [node name="TileMap" type="TileMap" parent="."]
+position = Vector2(138, 95)
 tile_set = SubResource("TileSet_tlwt5")
 rendering_quadrant_size = 17
 format = 2
-layer_0/tile_data = PackedInt32Array(65535, 0, 0, -1, 0, 0, -65537, 0, 0, -131074, 0, 0, -131075, 0, 0, 0, 0, 0, -65536, 0, 0, -131072, 0, 0, -196608, 0, 0, 65536, 0, 0, -131071, 0, 0, -65539, 4, 0, -131076, 4, 0, -3, 4, 0, -2, 4, 0, 65534, 4, 0, -65538, 1, 0, 131071, 1, 0, 1, 1, 0, 131070, 4, 0, 196607, 4, 0, 131072, 4, 0, 262143, 4, 0, 262144, 4, 0, 196608, 4, 0, 131073, 4, 0, 65537, 4, 0, -65535, 4, 0, 2, 4, 0, -131070, 4, 0, -196607, 0, 0, -327680, 0, 0)
+layer_0/tile_data = PackedInt32Array(65535, 0, 0, -1, 0, 0, -65537, 0, 0, -131074, 0, 0, -131075, 0, 0, 0, 0, 0, -65536, 0, 0, -131072, 0, 0, -196608, 0, 0, 65536, 0, 0, -131071, 0, 0, -65539, 4, 0, -131076, 4, 0, -3, 4, 0, -2, 4, 0, 65534, 4, 0, -65538, 1, 0, 131071, 1, 0, 1, 1, 0, 131070, 4, 0, 196607, 4, 0, 131072, 4, 0, 262143, 4, 0, 262144, 4, 0, 196608, 4, 0, 131073, 4, 0, 65537, 4, 0, -65535, 4, 0, 2, 4, 0, -131070, 4, 0, -262143, 9, 0, -393216, 9, 0, -393217, 9, 0, -458752, 10, 0, -589824, 9, 0, -524288, 9, 0, -393215, 10, 0, -524287, 10, 0, -458751, 10, 0, -327679, 10, 0, -262142, 10, 0, -393214, 10, 0, -327678, 10, 0, -458750, 10, 0, -393213, 10, 0, -524286, 10, 0, -589823, 10, 0, -655359, 9, 0, -196607, 9, 0, -327680, 9, 0, -720895, 9, 0, -655358, 9, 0, -589822, 9, 0, -524285, 9, 0, -458749, 9, 0, -393212, 9, 0, -327677, 9, 0, -262141, 9, 0, -196606, 9, 0)
 
 [node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D2"]
-position = Vector2(203, -93)
+position = Vector2(207, -81)
 sprite_frames = SubResource("SpriteFrames_mc2jv")
 autoplay = "default"
-frame_progress = 0.78628767
+frame_progress = 0.28851208
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]
+position = Vector2(208, -76)
+shape = SubResource("CapsuleShape2D_udxuc")
