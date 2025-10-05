@@ -21,7 +21,7 @@ func _on_node_added(node: Node) -> void:
 	if node.is_in_group("BBox"):
 		node.connect("success", Callable(self, "_on_bbox_success"))
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("modes"):
 		flag = not flag
 	if flag:
@@ -32,10 +32,7 @@ func _process(delta: float) -> void:
 		sT.enabled  = true
 		sT.target_position = camG.project_local_ray_normal(get_viewport().get_mouse_position()) * 1000
 		sT.force_raycast_update()
-		if sT.is_colliding():
-			#print("Saw something")
-			#print(sT.get_collider())
-			#if Input.is_action_just_pressed("Lclick"):
+		if sT.is_colliding():		
 			if sT.get_collider().get_parent().has_method("shame") and sA:
 					sT.get_collider().get_parent().shame(sA.get_parent(),temp)
 					
@@ -83,9 +80,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-#func _on_cyltest_success() -> void:
-	#sA = null
+func _on_cyltest_success() -> void:
+	sA = null
 
-
-#func _on_boxtest_success() -> void:
-	#sA = null
+func _on_boxtest_success() -> void:
+	sA = null

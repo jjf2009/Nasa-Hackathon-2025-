@@ -7,17 +7,29 @@
 [sub_resource type="GDScript" id="GDScript_lnicu"]
 script/source = "extends Node3D
 
+@export var target_combos: Array = [
+	[123, 456],     
+	[111, 222, 333]  
+]
 
-# Called when the node enters the scene tree for the first time.
+signal combo_detected(found_combo: Array, present_ids: Array)
+
 func _ready() -> void:
 	for snap in get_tree().get_nodes_in_group(\"snap\"):
 		snap.connect(\"snap_detected\", Callable(self, \"_on_snap_detected\"))
 
 func _on_snap_detected(ids: Array) -> void:
-	print(\"Snap overlap detected: \", ids)
+	var present_ids: Array = []
+	for item in ids:
+		present_ids.append(item[\"id\"])
 
+	print(\"Snap overlap detected: \", present_ids)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	for combo in target_combos:
+		if combo.all(func(t): return t in present_ids):
+			emit_signal(\"combo_detected\", combo, present_ids)
+			print(\"Combo detected: \", combo, \" inside \", present_ids)
+
 func _process(delta: float) -> void:
 	pass
 "

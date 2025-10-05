@@ -45,13 +45,12 @@ func _unhandled_input(event: InputEvent) -> void:
 					
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 func shame(obj: Node3D, temp):
 	#print(\"Shaming\", obj, \"onto\", self, \"using snap\", snap_nodes[current_snap_index] if not snap_nodes.is_empty() else null)
 	flag1 = 1
 	
-	var obj_snap = obj.get_node_or_null(\"snap\")
 	for node in get_tree().get_nodes_in_group(\"snap\"):
 		if node.get_parent() == obj and node is Area3D:
 			obj2.append(node)
@@ -78,10 +77,9 @@ func shame(obj: Node3D, temp):
 		emit_signal(\"success\")
 "
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_jtt8e"]
-top_radius = 5.0
-bottom_radius = 5.0
-height = 10.0
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wtj6h"]
+radius = 5.0
+height = 14.84
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_xhe3c"]
 height = 1.0654297
@@ -90,7 +88,7 @@ height = 1.0654297
 script = SubResource("GDScript_jtt8e")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CylinderMesh_jtt8e")
+mesh = SubResource("CapsuleMesh_wtj6h")
 
 [node name="snap" parent="." instance=ExtResource("1_jtt8e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29147315, 5.962413, 0)

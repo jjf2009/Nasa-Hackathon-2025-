@@ -1,17 +1,33 @@
 extends Area3D
 
 @export var default_size: Vector3 = Vector3(1, 1, 1)
-@export var id: int
+@export var data: TextEdit
 
 signal snap_detected(ids: Array)
 
 func _ready() -> void:
-	# Connect to detect overlaps
 	connect("area_entered", Callable(self, "_on_area_entered"))
 
 func _on_area_entered(area: Area3D) -> void:
-	# Only react if the other area is also a snap node
 	if area.is_in_group("snap"):
-		var other_id = area.id
-		var ids = [id, other_id]
-		emit_signal("snap_detected", ids)
+		var collected = []
+
+		collected.append({
+			"id": get_instance_id(),
+			"data": data
+		})
+
+		collected.append({
+			"id": area.get_instance_id(),
+			"data": area.data
+		})
+
+		var parent = area.get_parent()
+		for child in parent.get_children():
+			if child.is_in_group("snap") and child != area:
+				collected.append({
+					"id": child.get_instance_id(),
+					"data": child.data
+				})
+
+		emit_signal("snap_detected", collected)

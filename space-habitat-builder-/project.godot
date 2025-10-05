@@ -14,6 +14,10 @@ config/name="Space Habitat Builder"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[dotnet]
+
+project/assembly_name="Space Habitat Builder"
+
 [global_group]
 
 snap="do not change the size"
