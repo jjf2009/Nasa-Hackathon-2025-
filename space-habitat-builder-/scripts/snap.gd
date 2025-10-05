@@ -1,13 +1,17 @@
 extends Area3D
+
 @export var default_size: Vector3 = Vector3(1, 1, 1)
-signal snap_detected(other_snap)
+@export var id: int
 
+signal snap_detected(ids: Array)
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	# Connect to detect overlaps
+	connect("area_entered", Callable(self, "_on_area_entered"))
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_area_entered(area: Area3D) -> void:
+	# Only react if the other area is also a snap node
+	if area.is_in_group("snap"):
+		var other_id = area.id
+		var ids = [id, other_id]
+		emit_signal("snap_detected", ids)

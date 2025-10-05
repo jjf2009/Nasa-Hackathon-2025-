@@ -86,7 +86,7 @@ albedo_color = Color(0.49998897, 0.38225612, 0.04028101, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_83adf"]
 
-[node name="boxtest" type="Node3D"]
+[node name="boxtest" type="Node3D" groups=["BBox"]]
 script = SubResource("GDScript_uubix")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

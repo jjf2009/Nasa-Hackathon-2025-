@@ -14,6 +14,13 @@ var sA = false
 var flag : bool = 1
 var temp
 
+func _ready() -> void:
+	get_tree().connect("node_added", Callable(self, "_on_node_added"))
+
+func _on_node_added(node: Node) -> void:
+	if node.is_in_group("BBox"):
+		node.connect("success", Callable(self, "_on_bbox_success"))
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("modes"):
 		flag = not flag
@@ -42,7 +49,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		if flag:
 			rotation.y = rotation.y - event.relative.x * sens
 			camG.rotation.x = camG.rotation.x - event.relative.y * sens
-func reset_sA():
+func _on_bbox_success():
+	print("success")
 	sA = null
 
 func _physics_process(delta: float) -> void:
@@ -75,9 +83,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _on_cyltest_success() -> void:
-	sA = null
+#func _on_cyltest_success() -> void:
+	#sA = null
 
 
-func _on_boxtest_success() -> void:
-	sA = null
+#func _on_boxtest_success() -> void:
+	#sA = null

@@ -1,11 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://ck0xdg6h428qm"]
+[gd_scene load_steps=5 format=3 uid="uid://ck0xdg6h428qm"]
 
 [ext_resource type="PackedScene" uid="uid://xctjrvcj1d5i" path="res://scenes/CAM.tscn" id="1_lnicu"]
 [ext_resource type="PackedScene" uid="uid://8tggcmkshkfj" path="res://scenes/snappytest.tscn" id="2_k6idk"]
 [ext_resource type="PackedScene" uid="uid://ialjlqsl1sj5" path="res://scenes/snapyy2.tscn" id="3_2wbsa"]
 
+[sub_resource type="GDScript" id="GDScript_lnicu"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	for snap in get_tree().get_nodes_in_group(\"snap\"):
+		snap.connect(\"snap_detected\", Callable(self, \"_on_snap_detected\"))
+
+func _on_snap_detected(ids: Array) -> void:
+	print(\"Snap overlap detected: \", ids)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+script = SubResource("GDScript_lnicu")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8941542, -0.36543307, 0.25874102, 0, 0.5778576, 0.8161376, -0.44775912, 0.72975284, -0.51669383, 0, 0, 0)

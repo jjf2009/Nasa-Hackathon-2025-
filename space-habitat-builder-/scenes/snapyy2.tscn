@@ -86,7 +86,7 @@ height = 10.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_xhe3c"]
 height = 1.0654297
 
-[node name="cyltest" type="Node3D"]
+[node name="cyltest" type="Node3D" groups=["BBox"]]
 script = SubResource("GDScript_jtt8e")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
