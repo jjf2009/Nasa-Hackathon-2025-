@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cohhj8wtok28u"]
+
+[ext_resource type="Script" uid="uid://b23pfrr25mn8h" path="res://scripts/building.gd" id="1_5t4e2"]
+[ext_resource type="Script" uid="uid://t7lwt13g0trs" path="res://scripts/collision_shape_3d.gd" id="2_xvgsr"]
+[ext_resource type="PackedScene" uid="uid://c5cpdrfulu5f8" path="res://scenes/snap.tscn" id="3_oqwcg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r3fl7"]
+
+[node name="building" type="Node3D"]
+script = ExtResource("1_5t4e2")
+metadata/_edit_group_ = true
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1725998, 0)
+shape = SubResource("BoxShape3D_r3fl7")
+script = ExtResource("2_xvgsr")
+default_size = Vector3(10, 10, 10)
+
+[node name="snap" parent="." instance=ExtResource("3_oqwcg")]
