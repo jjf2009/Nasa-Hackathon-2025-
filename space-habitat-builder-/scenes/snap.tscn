@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5cpdrfulu5f8"]
+
+[ext_resource type="Script" uid="uid://cr6uiqq0gnqxn" path="res://scripts/snap.gd" id="1_0fqr7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prpt2"]
+
+[node name="snap" type="Area3D" groups=["snap"]]
+script = ExtResource("1_0fqr7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_prpt2")

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf7brgwaxlmud"]
+
+[ext_resource type="Script" uid="uid://dlaqvp6rvxod" path="res://addons/3d_rts_camera/3d_rts_camera.gd" id="1_sfvaa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_aacxx"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0541451, 1.3196437, -3.74091)
+mesh = SubResource("BoxMesh_aacxx")
+
+[node name="RTScamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6084404, 0)
+script = ExtResource("1_sfvaa")
