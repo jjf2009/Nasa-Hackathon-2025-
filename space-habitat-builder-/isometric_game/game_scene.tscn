@@ -41,7 +41,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3d2pr"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e35lh"]
+size = Vector2(136, 279)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 
@@ -51,7 +52,7 @@ autoplay = "default"
 frame_progress = 0.8955717
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 2)
-shape = SubResource("CircleShape2D_3d2pr")
+position = Vector2(3, 50.5)
+shape = SubResource("RectangleShape2D_e35lh")
 
 [node name="Camera2D" type="Camera2D" parent="."]
