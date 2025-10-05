@@ -1,6 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://8tggcmkshkfj"]
+[gd_scene load_steps=12 format=3 uid="uid://8tggcmkshkfj"]
 
 [ext_resource type="PackedScene" uid="uid://c5cpdrfulu5f8" path="res://scenes/snap.tscn" id="1_uubix"]
+[ext_resource type="PackedScene" uid="uid://c0r80v2mq0q1x" path="res://scenes/sleeping_area.tscn" id="2_3w60q"]
+[ext_resource type="PackedScene" uid="uid://bv74k2qrgpobc" path="res://blender_habitats/FinalMoonTerrain.glb" id="3_avjlf"]
+[ext_resource type="PackedScene" uid="uid://5lta2f0o7xx8" path="res://scenes/medical_room.tscn" id="4_avjlf"]
+[ext_resource type="PackedScene" uid="uid://ckwt518pq3x6h" path="res://blender_assets/space_plant.glb" id="4_hdjgn"]
 
 [sub_resource type="GDScript" id="GDScript_uubix"]
 script/source = "extends Node3D
@@ -86,6 +90,10 @@ albedo_color = Color(0.49998897, 0.38225612, 0.04028101, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_83adf"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6d1ge"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_tslxo"]
+
 [node name="boxtest" type="Node3D" groups=["BBox"]]
 script = SubResource("GDScript_uubix")
 
@@ -104,3 +112,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6280494, 1.6829567, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0.0726099, 0)
 shape = SubResource("BoxShape3D_83adf")
+
+[node name="Node3D" parent="." instance=ExtResource("2_3w60q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.76823, -1.5363239, -8.329141)
+
+[node name="FinalMoonTerrain" parent="." instance=ExtResource("3_avjlf")]
+transform = Transform3D(10, 0, 0, 0, 9.999917, 0.04066606, 0, -0.04066606, 9.999917, 25.82327, -1.0231218, -14.920758)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FinalMoonTerrain"]
+physics_material_override = SubResource("PhysicsMaterial_6d1ge")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FinalMoonTerrain/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_tslxo")
+
+[node name="medical_room" parent="FinalMoonTerrain/StaticBody3D" instance=ExtResource("4_avjlf")]
+transform = Transform3D(0.025, 0, 0, 0, 0.02499979, -0.00010166514, 0, 0.00010166514, 0.02499979, -0.3664024, 0.0029955432, -0.1680454)
+
+[node name="Node3D2" parent="." instance=ExtResource("2_3w60q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.15735, -0.9034195, -17.128046)
+
+[node name="Node3D3" parent="." instance=ExtResource("2_3w60q")]
+transform = Transform3D(0.99906325, 0.0243835, -0.035747617, -0.025434427, 0.9992485, -0.029244438, 0.03500767, 0.030126274, 0.9989328, 20.350887, -1.1129389, -8.332826)
+
+[node name="space_plant" parent="." instance=ExtResource("4_hdjgn")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 22.08572, -1.0008953, -7.4058847)
+
+[node name="space_plant2" parent="." instance=ExtResource("4_hdjgn")]
+transform = Transform3D(0.25, 0, 0, 0, 0.24986255, -0.008288795, 0, 0.008288795, 0.24986255, 27.925892, -1.0144148, -6.452832)
+
+[node name="space_plant3" parent="." instance=ExtResource("4_hdjgn")]
+transform = Transform3D(0.2495321, 0, -0.015288265, 0, 0.25, 0, 0.015288265, 0, 0.2495321, 18.36481, -1.0457147, -9.106936)
+
+[node name="space_plant4" parent="." instance=ExtResource("4_hdjgn")]
+transform = Transform3D(-0.24513313, 0, -0.049089212, 0, 0.25, 0, 0.049089212, 0, -0.24513313, 21.924013, -0.97564757, -9.371447)
+
+[node name="space_plant5" parent="." instance=ExtResource("4_hdjgn")]
+transform = Transform3D(-0.24513313, 0, -0.049089212, 0, 0.25, 0, 0.049089212, 0, -0.24513313, 19.841324, -1.003808, -10.217992)
+
+[node name="space_plant6" parent="." instance=ExtResource("4_hdjgn")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 29.866352, -1.0008953, -7.4058847)
+
+[node name="space_plant7" parent="." instance=ExtResource("4_hdjgn")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 20.319618, -1.0144148, -6.452832)
+
+[node name="space_plant8" parent="." instance=ExtResource("4_hdjgn")]
+transform = Transform3D(0.2495321, 0, -0.015288265, 0, 0.25, 0, 0.015288265, 0, 0.2495321, 26.432386, -1.0457147, -9.106936)
+
+[node name="space_plant9" parent="." instance=ExtResource("4_hdjgn")]
+transform = Transform3D(-0.24513313, 0, -0.049089212, 0, 0.25, 0, 0.049089212, 0, -0.24513313, 30.366568, -0.97564757, -9.371447)
+
+[node name="space_plant10" parent="." instance=ExtResource("4_hdjgn")]
+transform = Transform3D(-0.24513313, 0, -0.049089212, 0, 0.25, 0, 0.049089212, 0, -0.24513313, 27.88863, -1.003808, -10.217992)

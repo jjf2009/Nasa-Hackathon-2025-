@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://y3n70rm6s6c5"]
+
+[ext_resource type="PackedScene" uid="uid://ckwt518pq3x6h" path="res://blender_assets/space_plant.glb" id="1_fi0kw"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_odjdt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a88lo"]
+size = Vector3(1.4946289, 2.1141357, 1)
+
+[node name="plant" type="Node3D"]
+
+[node name="space_plant" parent="." instance=ExtResource("1_fi0kw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17020035, 0, -0.5073118)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="space_plant"]
+physics_material_override = SubResource("PhysicsMaterial_odjdt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="space_plant/StaticBody3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.24731445, 0.5570679, 0)
+shape = SubResource("BoxShape3D_a88lo")

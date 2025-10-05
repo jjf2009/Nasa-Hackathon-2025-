@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://5lta2f0o7xx8"]
+
+[ext_resource type="PackedScene" uid="uid://dytoiqif5bkc4" path="res://blender_habitats/medical.glb" id="1_dvxct"]
+
+[node name="medical_room" type="Node3D"]
+
+[node name="medical" parent="." instance=ExtResource("1_dvxct")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.125607, 0, -4.5471783)
