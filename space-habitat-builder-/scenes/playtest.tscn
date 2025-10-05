@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck0xdg6h428qm"]
+
+[ext_resource type="PackedScene" uid="uid://xctjrvcj1d5i" path="res://scenes/CAM.tscn" id="1_lnicu"]
+[ext_resource type="PackedScene" uid="uid://8tggcmkshkfj" path="res://scenes/snappytest.tscn" id="2_k6idk"]
+[ext_resource type="PackedScene" uid="uid://ialjlqsl1sj5" path="res://scenes/snapyy2.tscn" id="3_2wbsa"]
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8941542, -0.36543307, 0.25874102, 0, 0.5778576, 0.8161376, -0.44775912, 0.72975284, -0.51669383, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 4)
+size = Vector3(15, 1, 9)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(0.39593017, -0.91828054, 0, 0.91828054, 0.39593017, 0, 0, 0, 1, 2.3407333, 1.5860945, 0)
+size = Vector3(1, 8.175629, 1)
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_lnicu")]
+transform = Transform3D(0.22377749, 0, -0.97464025, 0, 1, 0, 0.97464025, 0, 0.22377749, -5.8831882, 5, 4.8462505)
+sens = 0.02
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -2, 3, 4)
+
+[node name="boxtest" parent="." instance=ExtResource("2_k6idk")]
+transform = Transform3D(1, 0, 0, 0, 0.89192384, -0.45218566, 0, 0.45218566, 0.89192384, 18.815117, 2, -1.954979)
+
+[node name="cyltest" parent="." instance=ExtResource("3_2wbsa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.048415, 2, -5.378805)
+
+[connection signal="success" from="boxtest" to="CharacterBody3D" method="_on_boxtest_success"]
+[connection signal="success" from="cyltest" to="CharacterBody3D" method="_on_cyltest_success"]
