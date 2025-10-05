@@ -31,3 +31,6 @@ transform = Transform3D(1, 0, 0, 0, 0.89192384, -0.45218566, 0, 0.45218566, 0.89
 
 [node name="cyltest" parent="." instance=ExtResource("3_2wbsa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.048415, 2, -5.378805)
+
+[connection signal="success" from="boxtest" to="CharacterBody3D" method="_on_boxtest_success"]
+[connection signal="success" from="cyltest" to="CharacterBody3D" method="_on_cyltest_success"]

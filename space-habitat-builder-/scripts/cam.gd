@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export var sens = 0.002
-@onready var obj = "res://snappytest.tscn"
+@onready var obj = "res://scenes/snappytest.tscn"
 
 
 @export var SPEED = 5.0
@@ -12,6 +12,7 @@ extends CharacterBody3D
 
 var sA = false
 var flag : bool = 1
+var temp
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("modes"):
@@ -27,11 +28,13 @@ func _process(delta: float) -> void:
 		if sT.is_colliding():
 			#print("Saw something")
 			#print(sT.get_collider())
-			if Input.is_action_just_pressed("Lclick"):
-				if sT.get_collider().get_parent().has_method("shame") and sA:
-					sT.get_collider().get_parent().shame(sA.get_parent())
+			#if Input.is_action_just_pressed("Lclick"):
+			if sT.get_collider().get_parent().has_method("shame") and sA:
+					sT.get_collider().get_parent().shame(sA.get_parent(),temp)
+					
 			if Input.is_action_just_pressed("Rclick"):
 				sA = sT.get_collider()
+				temp = sA.get_parent().global_transform
 				print(sA.get_parent())
 		
 func _unhandled_input(event: InputEvent) -> void:
@@ -39,7 +42,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		if flag:
 			rotation.y = rotation.y - event.relative.x * sens
 			camG.rotation.x = camG.rotation.x - event.relative.y * sens
-		
+func reset_sA():
+	sA = null
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -69,3 +73,11 @@ func _physics_process(delta: float) -> void:
 				
 
 	move_and_slide()
+
+
+func _on_cyltest_success() -> void:
+	sA = null
+
+
+func _on_boxtest_success() -> void:
+	sA = null
