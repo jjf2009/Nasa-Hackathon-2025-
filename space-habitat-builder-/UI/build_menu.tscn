@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://crghv3lqmf87m"]
+
+[ext_resource type="Script" uid="uid://dlmjqvvgt6a17" path="res://UI/build_menu.gd" id="1_is5wo"]
+[ext_resource type="PackedScene" uid="uid://sgmrib3fxhg0" path="res://UI/slot.tscn" id="2_jxitk"]
+
+[node name="BuildMenu (PanelContainer)" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_is5wo")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Slot (PanelContainer)" parent="." instance=ExtResource("2_jxitk")]
+layout_mode = 2
+
+[node name="Slot (PanelContainer)2" parent="." instance=ExtResource("2_jxitk")]
+layout_mode = 2
+
+[node name="Slot (PanelContainer)3" parent="." instance=ExtResource("2_jxitk")]
+layout_mode = 2

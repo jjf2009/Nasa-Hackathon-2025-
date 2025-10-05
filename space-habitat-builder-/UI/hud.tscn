@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://lvhvxwlctphu"]
+
+[ext_resource type="Script" uid="uid://cpv2jeq0jopg3" path="res://UI/hud.gd" id="1_ne75i"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ne75i")
+
+[node name="StaminaBar" type="TextureProgressBar" parent="."]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+value = 100.0
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -10.0
+offset_top = -258.0
+offset_right = -10.0
+offset_bottom = -234.0
+grow_horizontal = 2
+value = 100.0
+
+[node name="OxygenBar" type="TextureProgressBar" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 0
+offset_left = 441.0
+offset_top = -226.0
+offset_right = 481.0
+offset_bottom = -186.0
+value = 100.0

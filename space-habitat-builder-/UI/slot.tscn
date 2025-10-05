@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://sgmrib3fxhg0"]
+
+[ext_resource type="Script" uid="uid://bg2blicxvndll" path="res://UI/slot.gd" id="1_p5h00"]
+
+[node name="Slot (PanelContainer)" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_p5h00")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect (icon)" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MarginContainer"]
+layout_mode = 2
